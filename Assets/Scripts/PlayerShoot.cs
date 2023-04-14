@@ -84,7 +84,6 @@ public class PlayerShoot : MonoBehaviour
             gunAnimator.SetTrigger("Reload");
             reloadAnimationStart = true;
         }
-        Debug.Log(ammo);
     }
 
     void Shoot(){
