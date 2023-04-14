@@ -79,9 +79,12 @@ public class PlayerShoot : MonoBehaviour
             canShoot = true;
         }
 
-        if (ammo == 0) {
+        if (ammo == 0 && !reloadAnimationStart) {
             reload = true;
+            gunAnimator.SetTrigger("Reload");
+            reloadAnimationStart = true;
         }
+        Debug.Log(ammo);
     }
 
     void Shoot(){
@@ -117,8 +120,9 @@ public class PlayerShoot : MonoBehaviour
         allAmmo -= magSize - ammo;
         ammo = magSize;
         ammoText.text = "AMMO: " + ammo + "/" + allAmmo;
-        gunAnimator.SetTrigger("BackReload");
         reload = false;
+        gunAnimator.SetTrigger("BackReload");
+        reloadAnimationStart = false;
     }
 
     IEnumerator ShootDelayCoroutine() {
