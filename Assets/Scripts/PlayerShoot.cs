@@ -121,7 +121,6 @@ public class PlayerShoot : MonoBehaviour
         ammo = magSize;
         ammoText.text = "AMMO: " + ammo + "/" + allAmmo;
         reload = false;
-        gunAnimator.SetTrigger("BackReload");
         reloadAnimationStart = false;
     }
 

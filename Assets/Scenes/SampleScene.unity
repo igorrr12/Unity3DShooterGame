@@ -3053,21 +3053,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 963194228}
     m_Modifications:
-    - target: {fileID: 1847212971, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
+    - target: {fileID: 1034110676, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 219872523}
-    - target: {fileID: 1847212971, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
+    - target: {fileID: 1034110676, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 1063980372}
+    - target: {fileID: 1034110676, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
+      propertyPath: gunAnimator
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1107057531944463664, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1107057531944463664, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1107057531944463664, guid: 9ed4359423aa4462bba6fc2dc3103efb, type: 3}
       propertyPath: m_LocalPosition.y
