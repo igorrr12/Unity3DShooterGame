@@ -46,7 +46,7 @@ public class PlayerShoot : MonoBehaviour
             Shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && ammo < 10) {
+        if (Input.GetKeyDown(KeyCode.R) && ammo < 10 && allAmmo >= magSize) {
             reload = true;
             gunAnimator.SetTrigger("Reload");
         }
@@ -102,11 +102,12 @@ public class PlayerShoot : MonoBehaviour
         RaycastHit hit;
 
         
-        bulletHit = Physics.Raycast(transform.position + aimDispersion, transform.up, out hit, rayLength);
+        bulletHit = Physics.Raycast(transform.position, transform.up + aimDispersion, out hit, rayLength);
 
-        if (bulletHit) {
+        if (bulletHit && hit.collider.gameObject.CompareTag("Robot")) {
             Debug.Log("You shot an enemy; Time: " + Time.time + "; Object: " + hit.collider.gameObject.name);
             bulletHit = false;
+            hit.collider.gameObject.transform.parent.GetComponent<RobotScript>().active = true;
         }
 
         ammo--;

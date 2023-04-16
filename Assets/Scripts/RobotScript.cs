@@ -1,32 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RobotScript : MonoBehaviour
 {
     private GameObject player;
-    public float rotationSpeed;
-    private Rigidbody rb;
-    public float moveSpeed;
-    public float minDistToPlayer;
+    public float activationDistance;
+    public float minDistanceToPlayer;
+    public bool active;
+    public float idleRotationSpeed;
+    private NavMeshAgent navMeshAgent;
 
     void Start() {
-        rb = GetComponent<Rigidbody>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.Find("Player");
     }
     
     // Update is called once per frame
     void Update()
     {
-        Quaternion rotation = Quaternion.LookRotation(player.transform.position - transform.position);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(90, rotation.eulerAngles.y, -90), rotationSpeed * Time.deltaTime);
-    }
+        if ((player.transform.position - transform.position).magnitude < activationDistance) {
+            active = true;
+        }
 
-    void FixedUpdate() {
-        if ((player.transform.position - transform.position).magnitude > minDistToPlayer) {
-            rb.velocity = -transform.right * moveSpeed * Time.deltaTime;
+        if ((transform.position - player.transform.position).magnitude < minDistanceToPlayer) {
+            active = false;
+        }
+        if (active) {
+            gameObject.GetComponent<NavMeshAgent>().enabled = true;
+            navMeshAgent.destination = player.transform.position;
         } else {
-            rb.velocity = Vector3.zero;
+            gameObject.GetComponent<NavMeshAgent>().enabled = false;
+            Quaternion rotation = Quaternion.LookRotation(player.transform.position - transform.position);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, rotation.eulerAngles.y, 0), idleRotationSpeed * Time.deltaTime);
         }
     }
 }
