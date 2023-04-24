@@ -11,6 +11,7 @@ public class RobotScript : MonoBehaviour
     public bool active;
     public float idleRotationSpeed;
     private NavMeshAgent navMeshAgent;
+    public float playerHeightMultiplier;
 
     void Start() {
         navMeshAgent = GetComponent<NavMeshAgent>();

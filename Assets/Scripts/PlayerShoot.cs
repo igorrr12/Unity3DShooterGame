@@ -30,6 +30,7 @@ public class PlayerShoot : MonoBehaviour
     private bool canShoot = true;
     public float shootDelay;
     private bool reloadAnimationStart;
+    public int gunDamage;
 
     
     void Start() {
@@ -105,6 +106,7 @@ public class PlayerShoot : MonoBehaviour
         bulletHit = Physics.Raycast(transform.position, transform.up + aimDispersion, out hit, rayLength);
 
         if (bulletHit && hit.collider.gameObject.CompareTag("Robot")) {
+            hit.collider.gameObject.GetComponent<Health>().health -= gunDamage;
             Debug.Log("You shot an enemy; Time: " + Time.time + "; Object: " + hit.collider.gameObject.name);
             bulletHit = false;
             hit.collider.gameObject.transform.parent.GetComponent<RobotScript>().active = true;
